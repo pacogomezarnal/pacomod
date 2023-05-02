@@ -1,5 +1,6 @@
 package ac.mastermind.pacomod;
 import ac.mastermind.pacomod.block.ModBlocks;
+import ac.mastermind.pacomod.item.ModCustomTab;
 import ac.mastermind.pacomod.item.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -21,11 +22,12 @@ public class PacoMod
     // Define mod id in a common place for everything to reference
     public static final String MODID = "pacomod";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
     // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
 
     public PacoMod()
     {
+        PacoMod.LOGGER.info("[PACOMOD] Comienza PacoMod");
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         //Registramos los BLOCKS (Deben estar registrados antes para que funcione el get)
         ModBlocks.BLOCKS.register(modEventBus);
@@ -36,6 +38,8 @@ public class PacoMod
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
+        //Register TabCustom
+        MinecraftForge.EVENT_BUS.register(ModCustomTab.class);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
     }
@@ -53,6 +57,8 @@ public class PacoMod
         }else if(event.getTab() == CreativeModeTabs.BUILDING_BLOCKS){
             event.accept(ModBlocks.EXAMPLE_BLOCK);
             event.accept(ModBlocks.EXAMPLE_BLOCK2);
+        }else if(event.getTab() == ModCustomTab.MODCUSTOMTAB) {
+            event.accept(ModItems.TARJ_ITEM);
         }
     }
 

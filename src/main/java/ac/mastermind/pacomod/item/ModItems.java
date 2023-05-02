@@ -9,9 +9,17 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
-    public final static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PacoMod.MODID);
+    public final static DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,
+            PacoMod.MODID);
 
-    public final static RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("ejemplo_item", () -> new Item(new Item.Properties()));
+    public final static RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("ejemplo_item",
+            () -> new Item(new Item.Properties()));
+
+    public final static RegistryObject<Item> TARJ_ITEM = ITEMS.register("tarjeta_graph",
+            () -> new Item(new Item.Properties()));
+
+    public final static RegistryObject<Item> TAB_ICON_ITEM = ITEMS.register("tab_icon",
+            () -> new Item(new Item.Properties()));
     // Ya no se necesita con la nueva función
     // public final static RegistryObject<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.register("ejemplo_block", ()-> new BlockItem(ModBlocks.EXAMPLE_BLOCK.get(),new Item.Properties()));
 }
